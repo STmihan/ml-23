@@ -1,5 +1,11 @@
 ﻿CMAKE_MINIMUM_REQUIRED( VERSION 3.14)
-PROJECT(applied_library)
+set (PROJECT_NAME applied_library)
+PROJECT(${PROJECT_NAME})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-add_library( rootmodule SHARED speaker.cpp speaker.h )
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+add_library(${PROJECT_NAME} SHARED speaker.cpp speaker.h)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
